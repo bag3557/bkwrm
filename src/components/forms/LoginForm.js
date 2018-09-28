@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import { Form, Button} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Validator from 'validator';
+import { Form, Button} from 'semantic-ui-react';
 import InlineError from '../messages/InlineError';
 
 class LoginForm extends Component {
 
   state = {
     data: {
-      email: '',
+      email: "",
       password: ''
     },
     loading: false,
@@ -17,7 +17,7 @@ class LoginForm extends Component {
 
   onChange = e => 
     this.setState({ 
-      data: { ...this.state.data, [e.target.name]: [e.target.value]}
+      data: { ...this.state.data, [e.target.name]: e.target.value}
     })
 
   onSubmit = () => {
@@ -29,7 +29,7 @@ class LoginForm extends Component {
   }
 
   validate = data => {
-    const errors ={};
+    const errors ={};    
     if(!Validator.isEmail(data.email)) errors.email = "Invalid email";
     if(!data.password) errors.password = "Can't be blank";
     return errors;
@@ -73,4 +73,5 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
   submit: PropTypes.func.isRequired
 }
+
 export default LoginForm;
